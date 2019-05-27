@@ -23,6 +23,8 @@ public class Main extends Application {
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
 
+
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -35,7 +37,7 @@ public class Main extends Application {
 
         ui.add(new Label("Health: "), 0, 0);
         ui.add(healthLabel, 1, 0);
-
+        ui.add(new Label("Inventory: "),0, 1);
         BorderPane borderPane = new BorderPane();
 
         borderPane.setCenter(canvas);
@@ -52,19 +54,23 @@ public class Main extends Application {
 
     private void onKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
+
             case UP:
                 map.getPlayer().move(0, -1);
                 refresh();
                 break;
             case DOWN:
+
                 map.getPlayer().move(0, 1);
                 refresh();
                 break;
             case LEFT:
+
                 map.getPlayer().move(-1, 0);
                 refresh();
                 break;
             case RIGHT:
+
                 map.getPlayer().move(1,0);
                 refresh();
                 break;
