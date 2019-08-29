@@ -2,12 +2,6 @@ package com.codecool.quest.logic.actors;
 
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.Drawable;
-import sun.awt.geom.AreaOp;
-import sun.util.locale.provider.SPILocaleProviderAdapter;
-
-import javax.sql.rowset.spi.SyncProvider;
-import javax.swing.*;
-import java.net.SocketOption;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -25,7 +19,21 @@ public abstract class Actor implements Drawable {
             cell.setActor(null);
             nextCell.setActor(this);
             cell = nextCell;
+        } else if (nextCell.getActor() != null){
+            fight(nextCell);
         }
+    }
+
+    public void fight(Cell nextCell){
+        nextCell.getActor().health -= 20;
+        cell.getActor().health -= 20;
+        if (nextCell.getActor().health <= 0){
+            nextCell.setActor(null);
+        }
+        if (cell.getActor().health <= 0){
+            cell.setActor(null);
+        }
+        System.out.println(nextCell.getActor().health);
     }
 
     public int getHealth() {
