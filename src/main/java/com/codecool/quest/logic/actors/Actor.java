@@ -11,7 +11,7 @@ import java.net.SocketOption;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
-    private int health = 10;
+    private int health = 100;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -31,6 +31,7 @@ public abstract class Actor implements Drawable {
     public int getHealth() {
         return health;
     }
+
 
     public Cell getCell() {
         return cell;

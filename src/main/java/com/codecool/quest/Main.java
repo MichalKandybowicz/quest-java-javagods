@@ -48,7 +48,7 @@ public class Main extends Application {
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-        primaryStage.setTitle("Codecool Quest");
+        primaryStage.setTitle("noobs in the cave");
         primaryStage.show();
     }
 
@@ -83,11 +83,20 @@ public class Main extends Application {
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
-                if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x, y);
-                } else {
-                    Tiles.drawTile(context, cell, x, y);
+                if (
+                        ((map.getPlayer().getX() >= x-1 && map.getPlayer().getX() <= x+1) &&
+                                (map.getPlayer().getY() >= y-2 && map.getPlayer().getY() <= y+2))
+                                ||
+                                (map.getPlayer().getX() >= x-2 && map.getPlayer().getX() <= x+2) &&
+                                        (map.getPlayer().getY() >= y-1 && map.getPlayer().getY() <= y+1)
+                ){
+                    if (cell.getActor() != null) {
+                        Tiles.drawTile(context, cell.getActor(), x, y);
+                    } else {
+                        Tiles.drawTile(context, cell, x, y);
+                    }
                 }
+
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
