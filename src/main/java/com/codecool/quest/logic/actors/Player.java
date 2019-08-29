@@ -6,6 +6,7 @@ import com.codecool.quest.logic.actors.Actor;
 public class Player extends Actor {
     public Player(Cell cell) {
         super(cell);
+
     }
 
     public String getTileName() {
