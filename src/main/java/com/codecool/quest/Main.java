@@ -15,13 +15,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+
+
 public class Main extends Application {
+
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
             map.getWidth() * Tiles.TILE_WIDTH,
             map.getHeight() * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    static public boolean isAlive = true;
 
 
 
@@ -53,28 +57,31 @@ public class Main extends Application {
     }
 
     private void onKeyPressed(KeyEvent keyEvent) {
-        switch (keyEvent.getCode()) {
+        if (isAlive){
+            switch (keyEvent.getCode()) {
 
-            case UP:
-                map.getPlayer().move(0, -1);
-                refresh();
-                break;
-            case DOWN:
+                case UP:
+                    map.getPlayer().move(0, -1);
+                    refresh();
+                    break;
 
-                map.getPlayer().move(0, 1);
-                refresh();
-                break;
-            case LEFT:
+                case DOWN:
+                    map.getPlayer().move(0, 1);
+                    refresh();
+                    break;
 
-                map.getPlayer().move(-1, 0);
-                refresh();
-                break;
-            case RIGHT:
+                case LEFT:
+                    map.getPlayer().move(-1, 0);
+                    refresh();
+                    break;
 
-                map.getPlayer().move(1,0);
-                refresh();
-                break;
+                case RIGHT:
+                    map.getPlayer().move(1,0);
+                    refresh();
+                    break;
+            }
         }
+
     }
 
     private void refresh() {

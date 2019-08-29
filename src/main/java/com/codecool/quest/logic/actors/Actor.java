@@ -2,6 +2,7 @@ package com.codecool.quest.logic.actors;
 
 import com.codecool.quest.logic.Cell;
 import com.codecool.quest.logic.Drawable;
+import com.codecool.quest.Main;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -25,16 +26,28 @@ public abstract class Actor implements Drawable {
     }
 
     public void fight(Cell nextCell){
-        nextCell.getActor().health -= 20;
-        cell.getActor().health -= 20;
+
+        nextCell.getActor().health -= usingMathClass(20);;
+        cell.getActor().health -= usingMathClass(10);;
         if (nextCell.getActor().health <= 0){
             nextCell.setActor(null);
         }
         if (cell.getActor().health <= 0){
             cell.setActor(null);
+            Main.isAlive = false;
         }
         System.out.println(nextCell.getActor().health);
     }
+
+
+    static int usingMathClass(int range) {
+        double randomDouble = Math.random();
+        randomDouble = randomDouble * range + 1;
+        int randomInt = (int) randomDouble;
+        System.out.println("random: " + randomInt);
+        return randomInt;
+    }
+
 
     public int getHealth() {
         return health;
