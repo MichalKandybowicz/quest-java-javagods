@@ -32,6 +32,8 @@ public abstract class Actor implements Drawable {
         return health;
     }
 
+
+
     public Cell getCell() {
         return cell;
     }
