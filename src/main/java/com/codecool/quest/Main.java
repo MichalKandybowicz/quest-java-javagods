@@ -91,11 +91,9 @@ public class Main extends Application {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
                 if (
-                        ((map.getPlayer().getX() >= x-1 && map.getPlayer().getX() <= x+1) &&
-                                (map.getPlayer().getY() >= y-2 && map.getPlayer().getY() <= y+2))
-                                ||
-                                (map.getPlayer().getX() >= x-2 && map.getPlayer().getX() <= x+2) &&
-                                        (map.getPlayer().getY() >= y-1 && map.getPlayer().getY() <= y+1)
+                        ((map.getPlayer().getX() >= x-1 && map.getPlayer().getX() <= x+1) && (map.getPlayer().getY() >= y-3 && map.getPlayer().getY() <= y+3))
+                                || (map.getPlayer().getX() >= x-3 && map.getPlayer().getX() <= x+3) && (map.getPlayer().getY() >= y-1 && map.getPlayer().getY() <= y+1)
+                                || (map.getPlayer().getX() >= x-2 && map.getPlayer().getX() <= x+2) && (map.getPlayer().getY() >= y-2 && map.getPlayer().getY() <= y+2)
                 ){
                     if (cell.getActor() != null) {
                         Tiles.drawTile(context, cell.getActor(), x, y);
