@@ -1,0 +1,46 @@
+.btn {
+    -fx-padding: 5;
+    -fx-background-color: #b6b6b6;
+    -fx-border-color: #7d7d7d;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+}
+
+.btn:hover
+{
+    -fx-background-color: #dadada;
+}
+
+.ui-pane
+{
+    -fx-border-color: #804000;
+    -fx-border-style: solid;
+    -fx-border-width: 8px;
+    -fx-background-color: #ddffcc;
+    -fx-width: 200px;
+    -fx-padding: 10px;
+}
+
+.name-field
+{
+    -fx-padding: 5;
+    -fx-background-color: #b6b6b6;
+    -fx-border-color: #7d7d7d;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+}
+
+.name-field:focused
+{
+    -fx-background-color: #dadada;
+}
+
+.top-ui-pane
+{
+    /*-fx-border-color: #f4a460;*/
+    /*-fx-border-style: solid;*/
+    /*-fx-border-width: 8px;*/
+    -fx-background-color: #ddffcc;
+    -fx-width: 840px;
+    -fx-padding: 10px;
+}

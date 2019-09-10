@@ -1,15 +1,17 @@
 package com.codecool.quest.logic.actors;
 
-import com.codecool.quest.logic.Cell;
-import com.codecool.quest.logic.Drawable;
 import com.codecool.quest.Main;
+import com.codecool.quest.logic.Cell;
+import com.codecool.quest.logic.interfaces.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 100;
+    private String direction;
 
     public Actor(Cell cell) {
         this.cell = cell;
+        this.direction = "up";
         this.cell.setActor(this);
     }
 
@@ -53,6 +55,13 @@ public abstract class Actor implements Drawable {
         return health;
     }
 
+    public String getDirection(){
+        return direction;
+    }
+
+    public void changeDirection(String newDirection){
+        direction = newDirection;
+    }
 
     public Cell getCell() {
         return cell;
