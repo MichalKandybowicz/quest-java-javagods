@@ -1,13 +1,15 @@
 package com.codecool.quest.logic.actors;
 
-import com.codecool.quest.Main;
 import com.codecool.quest.logic.Cell;
+import com.codecool.quest.logic.CellType;
 import com.codecool.quest.logic.interfaces.Drawable;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
     private int health = 100;
     private String direction;
+    protected int baseDMG = 10;
+    protected int DMGmod = 0;
 
     public Actor(Cell cell) {
         this.cell = cell;
@@ -17,42 +19,53 @@ public abstract class Actor implements Drawable {
 
     public void move(int dx, int dy) {
         Cell nextCell = cell.getNeighbor(dx, dy);
-        if (!nextCell.getType().toString().equals("WALL") &&
-                nextCell.getActor() == null){
-            cell.setActor(null);
-            nextCell.setActor(this);
-            cell = nextCell;
+
+        if (isMoveValid(nextCell)) {
+            changeCell(nextCell);
         } else if (nextCell.getActor() != null){
-            fight(nextCell);
+            attack(nextCell);
         }
     }
 
-    public void fight(Cell nextCell){
-
-        nextCell.getActor().health -= usingMathClass(20);;
-        cell.getActor().health -= usingMathClass(10);;
-        if (nextCell.getActor().health <= 0){
-            nextCell.setActor(null);
-        }
-        if (cell.getActor().health <= 0){
-            cell.setActor(null);
-            Main.isAlive = false;
-        }
-        System.out.println(nextCell.getActor().health);
+    public void attack(Cell cellToAttack){
+        cellToAttack.getActor().receiveAttack(getDMG());
     }
 
-
-    static int usingMathClass(int range) {
-        double randomDouble = Math.random();
-        randomDouble = randomDouble * range + 1;
-        int randomInt = (int) randomDouble;
-        System.out.println("random: " + randomInt);
-        return randomInt;
+    public void receiveAttack(int dmgReceived){
+        this.changeHealth(dmgReceived);
+        if (this.health<=0){
+            DIE();
+        }
     }
 
+    protected boolean isMoveValid(Cell nextCell) {
+        boolean isNextCellWall = nextCell.getType().equals(CellType.WALL);
+        boolean isNextCellActor = nextCell.getActor() != null;
+
+        return !isNextCellWall && !isNextCellActor;
+    }
+
+    public Cell getNextCell(){
+        switch(direction){
+            case "up":
+                return cell.getNeighbor(0,1);
+            case "down":
+                return cell.getNeighbor(0, -1);
+            case "left":
+                return cell.getNeighbor(-1, 0);
+            case "right":
+                return cell.getNeighbor(1, 0);
+            default:
+                return cell;
+        }
+    }
 
     public int getHealth() {
         return health;
+    }
+
+    public void changeHealth(int changeOfHealth){
+        health-=changeOfHealth;
     }
 
     public String getDirection(){
@@ -73,5 +86,19 @@ public abstract class Actor implements Drawable {
 
     public int getY() {
         return cell.getY();
+    }
+
+    protected void changeCell(Cell nextCell) {
+        cell.setActor(null);
+        nextCell.setActor(this);
+        cell = nextCell;
+    }
+
+    public int getDMG(){
+        return baseDMG+DMGmod;
+    }
+
+    private void DIE(){
+        cell.setActor(null);
     }
 }

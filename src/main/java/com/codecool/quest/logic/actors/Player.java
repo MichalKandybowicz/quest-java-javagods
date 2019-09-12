@@ -11,6 +11,7 @@ public class Player extends Actor {
     public Player(Cell cell) {
         super(cell);
         playerInventory = new Inventory();
+        this.baseDMG = 25;
     }
 
     public Inventory getPlayerInventory(){
@@ -29,20 +30,6 @@ public class Player extends Actor {
             return true;
         }
         return false;
-    }
-
-    public Cell getNextCell(){
-        switch (getDirection()){
-            case "up":
-                return getCell().getNeighbor(0,-1);
-            case "down":
-                return getCell().getNeighbor(0,1);
-            case "left":
-                return getCell().getNeighbor(-1,0);
-            case "right":
-                return getCell().getNeighbor(1,0);
-        }
-        return getCell();
     }
 
     public String interactWithObject(Interactable interactableItem) {
@@ -65,5 +52,4 @@ public class Player extends Actor {
 
         return "";
     }
-
 }

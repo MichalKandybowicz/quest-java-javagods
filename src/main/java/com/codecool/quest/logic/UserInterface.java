@@ -12,8 +12,6 @@ public class UserInterface {
     private Label inventoryLabel = new Label();
     private Label messageLabel = new Label();
 
-    public GridPane topPane = new GridPane();
-    public GridPane bottomPane = new GridPane();
     public GridPane ui = new GridPane();
 
 

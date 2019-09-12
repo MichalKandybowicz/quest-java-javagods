@@ -42,8 +42,7 @@ public class Main extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(canvas);
         borderPane.setRight(UserInterface.ui);
-        borderPane.setBottom(UserInterface.bottomPane);
-        borderPane.setTop(UserInterface.topPane);
+
 
         UserInterface.showInventory(map);
         createScene(borderPane, primaryStage);
@@ -68,39 +67,32 @@ public class Main extends Application {
             Interactable interactableItem = player.getNextCell().getInteractable();
             switch (keyEvent.getCode()) {
                 case UP:
-                   player.move(0, -1);
                     player.changeDirection("up");
-                    showInventory();
+                    player.move(0, -1);
                     refresh();
                     break;
 
                 case DOWN:
-                    player.move(0, 1);
                     player.changeDirection("down");
-                    showInventory();
+                    player.move(0, 1);
                     refresh();
                     break;
 
                 case LEFT:
-                    player.move(-1, 0);
                     player.changeDirection("left");
-                    showInventory();
+                    player.move(-1, 0);
                     refresh();
                     break;
 
                 case RIGHT:
-                    player.move(1,0);
                     player.changeDirection("right");
-                    showInventory();
+                    player.move(1, 0);
                     refresh();
                     break;
+
                 case E:
-                    if (player.pickItem()) {
-                        UserInterface.getMessageLabel().setText(String.format("Picked a %s", playerInventory.getLastItem()));
-                    } else if (interactableItem != null) { //check for doors/chests
-                        String interactionMessage = player.interactWithObject(interactableItem);
-                        UserInterface.getMessageLabel().setText(interactionMessage);
-                    }
+                    if (player.pickItem())
+                        refresh();
                     break;
             }
         }
