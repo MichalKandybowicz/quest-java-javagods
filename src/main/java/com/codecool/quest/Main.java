@@ -70,24 +70,28 @@ public class Main extends Application {
                 case UP:
                    player.move(0, -1);
                     player.changeDirection("up");
+                    showInventory();
                     refresh();
                     break;
 
                 case DOWN:
                     player.move(0, 1);
                     player.changeDirection("down");
+                    showInventory();
                     refresh();
                     break;
 
                 case LEFT:
                     player.move(-1, 0);
                     player.changeDirection("left");
+                    showInventory();
                     refresh();
                     break;
 
                 case RIGHT:
                     player.move(1,0);
                     player.changeDirection("right");
+                    showInventory();
                     refresh();
                     break;
                 case E:

@@ -1,5 +1,6 @@
 package com.codecool.quest.logic;
 
+import com.codecool.quest.logic.actors.Boss_01;
 import com.codecool.quest.logic.actors.Player;
 import com.codecool.quest.logic.actors.Skeleton;
 import com.codecool.quest.logic.items.Axe;
@@ -44,6 +45,11 @@ public class MapLoader {
                             cell.setType(CellType.FLOOR);
                             new Axe(cell);
                             break;
+                        case 'b':
+                            cell.setType(CellType.FLOOR);
+                            new Boss_01(cell);
+                            break;
+
                         default:
                             throw new RuntimeException("Unrecognized character: '" + line.charAt(x) + "'");
                     }

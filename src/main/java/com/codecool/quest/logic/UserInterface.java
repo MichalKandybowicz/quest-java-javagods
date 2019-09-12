@@ -41,7 +41,7 @@ public class UserInterface {
         ui.add(healthLabelText, 0, 4);
         ui.add(healthLabel, 1, 4);
 
-        inventoryLabel.setTextFill(Color.LIGHTGOLDENRODYELLOW);
+        inventoryLabel.setTextFill(Color.ROSYBROWN);
         ui.add(inventoryLabel, 0, 7);
         Label lab = new Label("»»»»Inventory««««");
         lab.setTextFill(Color.ROSYBROWN);
